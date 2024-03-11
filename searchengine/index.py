@@ -37,7 +37,7 @@ if __name__ == '__main__':
     p.add_argument('dir')
     args = p.parse_args()
 
-    es = Elasticsearch(hosts=["http://localhost:9200"])
+    es = Elasticsearch(hosts=["http://10.0.200.11:9200"])
 
     if args.fresh:
         es.indices.delete(index=args.index, ignore=[404])
