@@ -7,10 +7,9 @@ services:
       target: uwsgi
     volumes:
       - ../db:/db
-    ports:
-      - 127.0.0.1:8000:8000
     networks:
-      - libcsearch
+      libcsearch:
+        ipv4_address: 10.0.200.10
     restart: always
     logging:
       driver: syslog
@@ -31,10 +30,9 @@ services:
         hard: -1
     volumes:
       - data01:/usr/share/elasticsearch/data
-    ports:
-      - 127.0.0.1:9200:9200
     networks:
-      - libcsearch
+      libcsearch:
+        ipv4_address: 10.0.200.11
     restart: always
     logging:
       driver: syslog
@@ -47,3 +45,6 @@ volumes:
 
 networks:
   libcsearch:
+    ipam:
+      config:
+        - subnet: 10.0.200.0/24
